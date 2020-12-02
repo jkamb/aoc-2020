@@ -8,10 +8,8 @@
             "name": "(Windows) Launch",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "cargo",
-            "args": [
-                "aoc"
-            ],
+            "program": "${workspaceFolder}/target/debug/aoc2020.exe",
+            "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
