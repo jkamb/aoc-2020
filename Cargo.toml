@@ -1,9 +1,9 @@
 [package]
-name = "aoc2020"
-version = "0.1.0"
 authors = ["Johan Kamb <johan@kamb.me>"]
 edition = "2018"
-
+name = "aoc2020"
+version = "0.1.0"
 [dependencies]
 aoc-runner = "0.3.0"
 aoc-runner-derive = "0.3.0"
+itertools = "*"
