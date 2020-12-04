@@ -39,8 +39,8 @@ impl Passport {
         match self.hgt {
             Some(ref hgt) => hgt[..hgt.len() - 2].parse::<u32>().map_or(false, |val| {
                 match &hgt[hgt.len() - 2..] {
-                    "in" => val >= 59 || val <= 76,
-                    "cm" => val >= 150 || val <= 193,
+                    "in" => val >= 59 && val <= 76,
+                    "cm" => val >= 150 && val <= 193,
                     _ => false,
                 }
             }),
@@ -62,7 +62,12 @@ impl Passport {
             Some(ref hcl) => {
                 hcl.len() == 7
                     && hcl.chars().nth(0) == Some('#')
-                    && hcl.chars().skip(1).all(char::is_alphanumeric)
+                    && hcl.chars().skip(1).all(|c| match c {
+                        '0'..='9' => true,
+                        'A'..='F' => true,
+                        'a'..='f' => true,
+                        _ => false,
+                    })
             }
             _ => false,
         }
@@ -149,9 +154,8 @@ pub fn part_1(input: &[Passport]) -> usize {
 pub fn part_2(input: &[Passport]) -> usize {
     input
         .iter()
-        .inspect(|pass| println!("Before filter {:?}", pass))
         .filter(|passport| passport.extended_validation())
-        .inspect(|pass| println!("After filter {:?}", pass))
+        .inspect(|pass| println!("Valid {:?}", pass))
         .count()
 }
 
