@@ -29,7 +29,7 @@ pub fn part_2(input: &[usize]) -> usize {
             return input[idx] + 1;
         }
     }
-    0
+    panic!("Couldn't find the seat")
 }
 
 #[cfg(test)]
