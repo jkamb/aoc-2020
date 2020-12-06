@@ -32,6 +32,16 @@ pub fn part_2(input: &[usize]) -> usize {
     panic!("Couldn't find the seat")
 }
 
+#[aoc(day5, part2, iter)]
+pub fn part_2_iter(input: &[usize]) -> usize {
+    (input[0]..input.len() - 1)
+        .zip(input)
+        .inspect(|val| println!("{:?}", val))
+        .find(|&(expected, &seat)| expected != seat)
+        .unwrap()
+        .0
+}
+
 #[cfg(test)]
 mod test {
     use super::*;
