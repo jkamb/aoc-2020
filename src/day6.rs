@@ -23,9 +23,9 @@ pub fn part_2(input: &str) -> usize {
     input
         .split("\n\n")
         .map(|group| {
-            let group_count = group.split("\n").count();
+            let group = group.split("\n");
+            let group_count = group.clone().count();
             group
-                .split("\n")
                 .fold(HashMap::new(), |mut collection, person| {
                     person.chars().for_each(|c| {
                         *collection.entry(c).or_insert(0) += 1;
