@@ -55,13 +55,16 @@ pub fn part_2(input: &HashMap<String, Vec<(u32, String)>>) -> u32 {
     let mut bags_to_count = VecDeque::new();
     bags_to_count.push_back(("shiny gold", 1));
     let mut count = 0;
-    while let Some((current_bag, num_of_bags)) = bags_to_count.pop_front() {
-        count += num_of_bags;
-        println!("{} has {} bags, total: {}", current_bag, num_of_bags, count);
+    while let Some((current_bag, current_num_of_bags)) = bags_to_count.pop_front() {
+        count += current_num_of_bags;
+        println!(
+            "{} has {} bags, total: {}",
+            current_bag, current_num_of_bags, count
+        );
         if let Some(bag) = input.get(current_bag) {
-            for (number_of_bags, bag_name) in bag {
-                println!("{} adds {} {} bags", current_bag, bag_name, number_of_bags);
-                bags_to_count.push_back((bag_name, number_of_bags * num_of_bags))
+            for (num_of_bags, bag_name) in bag {
+                println!("{} adds {} {} bags", current_bag, bag_name, num_of_bags);
+                bags_to_count.push_back((bag_name, num_of_bags * current_num_of_bags))
             }
         }
     }
