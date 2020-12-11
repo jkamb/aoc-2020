@@ -1,13 +1,17 @@
 #[aoc_generator(day10)]
 pub fn input_generator(input: &str) -> Vec<usize> {
-    let mut adapters: Vec<usize> = input.lines().map(|c| c.parse::<usize>().unwrap()).collect();
+    let mut adapters: Vec<usize> = input
+        .lines()
+        .map(|c| c.parse::<usize>().unwrap())
+        .chain(std::iter::once(0))
+        .collect();
     adapters.sort();
     adapters
 }
 
 #[aoc(day10, part2)]
 pub fn part_1(input: &[usize]) -> usize {
-    let mut one_jolt = 1;
+    let mut one_jolt = 0;
     let mut three_jolt = 0;
     for (index, adapter) in input.iter().enumerate() {
         if index == input.len() - 1 {
